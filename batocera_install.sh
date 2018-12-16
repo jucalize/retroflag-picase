@@ -27,10 +27,10 @@ fi
 #-----------------------------------------------------------
 
 #Step 3) Download Python script-----------------------------
-mkdir /opt/RetroFlag
+mkdir /recalbox/share/scripts;
 sleep 2s
 
-script=/opt/RetroFlag/SafeShutdown.py
+script=/recalbox/share/scripts/SafeShutdown.py
 
 if [ -e $script ];
 	then
@@ -43,20 +43,20 @@ fi
 sleep 2s
 
 #Step 4) Enable Python script to run on start up------------
-DIR=/etc/init.d/S99RetroFlag
+DIR=/recalbox/share/system/custom.sh
 
-if grep -q "python $script &" "S99RetroFlag";
+if grep -q "python $script &" "custom.sh";
 	then
 		if [ -x $DIR];
 			then 
-				echo "Executable S99RetroFlag already configured. Doing nothing."
+				echo "Executable S99RetroFlag($DIR) already configured. Doing nothing."
 			else
 				chmod +x $DIR
 		fi
 	else
 		echo "python $script &" >> $DIR
 		chmod +x $DIR
-		echo "Executable S99RetroFlag configured."
+		echo "Executable S99RetroFlag($DIR) configured."
 fi
 #-----------------------------------------------------------
 
